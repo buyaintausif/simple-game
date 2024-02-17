@@ -14,6 +14,7 @@ function continueGame(){
     const alphabet =getARandomAlphabet();
     const currentAlphabet =document.getElementById('alphabet');
     currentAlphabet.innerText = alphabet;
+    setCss(alphabet);
 
 }
 
