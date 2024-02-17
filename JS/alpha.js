@@ -21,16 +21,19 @@ function handleKBDpress(event) {
 
     if (alphabet === playerPressed) {
 
-        const currentScoreElement = document.getElementById('current-score');
-        const scoreValue = currentScoreElement.innerText;
-        const currentScore = parseInt(scoreValue);
+        // const currentScoreElement = document.getElementById('current-score');
+        // const scoreValue = currentScoreElement.innerText;
+        // const currentScore = parseInt(scoreValue);
 
+        // const updatedScore = currentScore + 1;
 
+        // currentScoreElement.innerText = newScore;
 
-        const newScore = currentScore + 1;
+        
+        const currentScore = getTextElementValueById('current-score');
+        const updatedScore = currentScore + 1;
 
-
-        currentScoreElement.innerText = newScore;
+        setTextElementById('current-score', updatedScore)
 
 
         removeBgById(playerPressed);
@@ -39,19 +42,25 @@ function handleKBDpress(event) {
 
 
     } else {
-        const currentLifeELement = document.getElementById('current-life');
+        // const currentLifeELement = document.getElementById('current-life');
 
-        const currentLifeText = currentLifeELement.innerText;
-        const currentLife = parseInt(currentLifeText);
-        const newLife = currentLife -1;
+        // const currentLifeText = currentLifeELement.innerText;
+        // const currentLife = parseInt(currentLifeText);
+        // const newLife = currentLife -1;
+        // currentLifeELement.innerText = newLife;
+
+       const currentLife=  getTextElementValueById('current-life');
+
+       const updatedLife = currentLife -1;
+
+       setTextElementById('current-life', updatedLife)
+
+       if(updatedLife === 0){
+        gameOver();
+      
+       }
 
 
-
-        currentLifeELement.innerText = newLife;
-
-
-
-        console.log('you fuck')
     }
 }
 
@@ -68,6 +77,22 @@ function continueGame() {
 function play() {
     hideSection('home');
     addSection('play-ground');
-    continueGame()
+    hideSection('score');
+
+
+
+    setTextElementById('current-life',5);
+    setTextElementById('current-score',0);
+
+
+
+    continueGame();
+   
 }
 
+
+function gameOver(){
+    hideSection('play-ground');
+    addSection('score');
+
+}
